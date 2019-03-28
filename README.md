@@ -90,6 +90,24 @@ Atoui32-12       0.00            0.00          ~     (all equal)
 Atoui64-12       0.00            0.00          ~     (all equal)
 ```
 
+## Atob / Btoa
+* old: BenchmarkCast(Atob|Btoa)
+* new: BenchmarkNew(Atob|Btoa)
+
+```
+name     old time/op    new time/op    delta
+Atob-12    0.48ns ± 3%    0.24ns ± 8%  -49.24%  (p=0.000 n=88+90)
+Btoa-12    3.66ns ±11%    0.24ns ± 0%  -93.44%  (p=0.000 n=92+68)
+
+name     old alloc/op   new alloc/op   delta
+Atob-12     0.00B          0.00B          ~     (all equal)
+Btoa-12     0.00B          0.00B          ~     (all equal)
+
+name     old allocs/op  new allocs/op  delta
+Atob-12      0.00           0.00          ~     (all equal)
+Btoa-12      0.00           0.00          ~     (all equal)
+```
+
 ### test
 ```
 $ vgo test -bench Ato -o test.bin -cpuprofile=cpu.prof -benchmem -count 100 -short -timeout 60m | tee run.log

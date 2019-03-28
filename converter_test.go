@@ -834,6 +834,36 @@ func TestAtobAndBtoa(t *testing.T) {
 	}
 }
 
+func BenchmarkNewAtob(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = Atob("Atob")
+	}
+}
+
+func BenchmarkCastAtob(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = []byte("Atob")
+	}
+}
+
+func BenchmarkNewBtoa(b *testing.B) {
+	b.StopTimer()
+	byteData := []byte("Btoa")
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		_ = Btoa(byteData)
+	}
+}
+
+func BenchmarkCastBtoa(b *testing.B) {
+	b.StopTimer()
+	byteData := []byte("Btoa")
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		_ = string(byteData)
+	}
+}
+
 func TestBool2Byte(t *testing.T) {
 	// GOMAXPROCS
 	runtime.GOMAXPROCS(1)
