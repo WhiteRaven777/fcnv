@@ -10,6 +10,7 @@ import (
 	"time"
 	"unsafe"
 
+	"golang.org/x/exp/constraints"
 	"golang.org/x/text/width"
 )
 
@@ -71,45 +72,47 @@ func Atob(s string) (b []byte) {
 	}))
 }
 
-func Itoa(i int) (ret string) {
+// Itoa converts an int* to a string.
+func Itoa[intx constraints.Signed](i intx) (ret string) {
 	return strconv.FormatInt(int64(i), 10)
 }
 
-func I8toa(i int8) (ret string) {
-	return strconv.FormatInt(int64(i), 10)
-}
+// Deprecated: I8toa is discontinued in the future.
+// Itoa should be used.
+func I8toa(i int8) (ret string) { return Itoa(i) }
 
-func I16toa(i int16) (ret string) {
-	return strconv.FormatInt(int64(i), 10)
-}
+// Deprecated: I16toa is discontinued in the future.
+// Itoa should be used.
+func I16toa(i int16) (ret string) { return Itoa(i) }
 
-func I32toa(i int32) (ret string) {
-	return strconv.FormatInt(int64(i), 10)
-}
+// Deprecated: I32toa is discontinued in the future.
+// Itoa should be used.
+func I32toa(i int32) (ret string) { return Itoa(i) }
 
-func I64toa(i int64) (ret string) {
-	return strconv.FormatInt(i, 10)
-}
+// Deprecated: I64toa is discontinued in the future.
+// Itoa should be used.
+func I64toa(i int64) (ret string) { return Itoa(i) }
 
-func Uitoa(ui uint) (ret string) {
+// Uitoa converts an uint* to a string.
+func Uitoa[uintx constraints.Unsigned](ui uintx) (ret string) {
 	return strconv.FormatUint(uint64(ui), 10)
 }
 
-func Ui8toa(ui uint8) (ret string) {
-	return strconv.FormatUint(uint64(ui), 10)
-}
+// Deprecated: Ui8toa is discontinued in the future.
+// Uitoa should be used.
+func Ui8toa(ui uint8) (ret string) { return Uitoa(ui) }
 
-func Ui16toa(ui uint16) (ret string) {
-	return strconv.FormatUint(uint64(ui), 10)
-}
+// Deprecated: Ui16toa is discontinued in the future.
+// Uitoa should be used.
+func Ui16toa(ui uint16) (ret string) { return Uitoa(ui) }
 
-func Ui32toa(ui uint32) (ret string) {
-	return strconv.FormatUint(uint64(ui), 10)
-}
+// Deprecated: Ui32toa is discontinued in the future.
+// Uitoa should be used.
+func Ui32toa(ui uint32) (ret string) { return Uitoa(ui) }
 
-func Ui64toa(ui uint64) (ret string) {
-	return strconv.FormatUint(ui, 10)
-}
+// Deprecated: Ui64toa is discontinued in the future.
+// Uitoa should be used.
+func Ui64toa(ui uint64) (ret string) { return Uitoa(ui) }
 
 func Btoa(b []byte) (ret string) {
 	h := *(*reflect.StringHeader)(unsafe.Pointer(&b))
@@ -123,8 +126,8 @@ func Byte2Int(b []byte) (ret int, err error) {
 	return strconv.Atoi(hex.EncodeToString(b))
 }
 
-func Int2Byte(i int) (ret []byte) {
-	return []byte(string(i))
+func Int2Byte[intx constraints.Signed](i intx) (ret []byte) {
+	return []byte(string(rune(i)))
 }
 
 func Byte2Bool(by []byte) (bo bool) {
@@ -155,7 +158,7 @@ func Bool2Int(b bool) (i int) {
 	return
 }
 
-func Int2Bool(i int) (b bool) {
+func Int2Bool[INT constraints.Integer](i INT) (b bool) {
 	if i == 0 {
 		b = false
 	} else {
@@ -164,23 +167,13 @@ func Int2Bool(i int) (b bool) {
 	return
 }
 
-func Bool2Uint(b bool) (i uint) {
-	if b {
-		i = 1
-	} else {
-		i = 0
-	}
-	return
-}
+// Deprecated: Bool2Uint is discontinued in the future.
+// Bool2Int should be used.
+func Bool2Uint(b bool) (i uint) { return uint(Bool2Int(b)) }
 
-func Uint2Bool(i uint) (b bool) {
-	if i == 0 {
-		b = false
-	} else {
-		b = true
-	}
-	return
-}
+// Deprecated: Uint2Bool is discontinued in the future.
+// Int2Bool should be used.
+func Uint2Bool(i uint) (b bool) { return Int2Bool(i) }
 
 func Bool2Str(b bool) (s string) {
 	if b {
@@ -201,8 +194,8 @@ func Str2Bool(s string) (ret bool, err error) {
 	return false, errors.New("invalid syntax")
 }
 
-func Struct2Json(structer interface{}) (jsonStr string, err error) {
-	b, err := json.Marshal(structer)
+func Struct2Json(structure any) (jsonStr string, err error) {
+	b, err := json.Marshal(structure)
 	jsonStr = Btoa(b)
 	return
 }

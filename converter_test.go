@@ -777,7 +777,7 @@ func TestByte2Int(t *testing.T) {
 	// GOMAXPROCS
 	runtime.GOMAXPROCS(1)
 	//---
-	b := []byte(string(1))
+	b := []byte(string(rune(1)))
 	i, _ := Byte2Int(b)
 	if reflect.TypeOf(i).Kind() == reflect.Int {
 		t.Log(ok, "Byte2Int(", b, ") => ", i)
