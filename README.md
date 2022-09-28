@@ -39,6 +39,8 @@ fcnv provides Go with fast and easy type conversion.
 <tr><td>Datetime2Date</td><td>time.Time</td><td>time.Time</td></tr>
 <tr><td>Hankaku2Zenkaku</td><td>string</td><td>string</td></tr>
 <tr><td>Zenkaku2Hankaku</td><td>string</td><td>string</td></tr>
+<tr><td>Struct2FlatMap</td><td>struct</td><td>1-Lv. map[string]string</td></tr>
+<tr><td>FlatMap2Struct</td><td>1-Lv. map[string]string</td><td>struct</td></tr>
 </table>
 
 ## Benchmark
