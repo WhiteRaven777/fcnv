@@ -63,6 +63,15 @@ func Atof64(s string) (ret float64, err error) {
 	return strconv.ParseFloat(s, 64)
 }
 
+func Atoc64(s string) (ret complex64, err error) {
+	cm, e := strconv.ParseComplex(s, 64)
+	return complex64(cm), e
+}
+
+func Atoc128(s string) (ret complex128, err error) {
+	return strconv.ParseComplex(s, 128)
+}
+
 func Atob(s string) (b []byte) {
 	h := *(*reflect.SliceHeader)(unsafe.Pointer(&s))
 	return *(*[]byte)(unsafe.Pointer(&reflect.SliceHeader{
@@ -113,6 +122,18 @@ func Ui32toa(ui uint32) (ret string) { return Uitoa(ui) }
 // Deprecated: Ui64toa is discontinued in the future.
 // Uitoa should be used.
 func Ui64toa(ui uint64) (ret string) { return Uitoa(ui) }
+
+// Ctoa converts a Complex (complex64, complex128) to a string.
+// The representation precision is complex64 compliant.
+func Ctoa[cmx constraints.Complex](f cmx) (ret string) {
+	return strconv.FormatComplex(complex128(f), 'f', -1, 128)
+}
+
+// Ftoa converts a Float (float32, float64) to a string.
+// The representation precision is float64 compliant.
+func Ftoa[floatx constraints.Float](f floatx) (ret string) {
+	return strconv.FormatFloat(float64(f), 'f', -1, 64)
+}
 
 func Btoa(b []byte) (ret string) {
 	h := *(*reflect.StringHeader)(unsafe.Pointer(&b))

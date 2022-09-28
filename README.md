@@ -5,7 +5,7 @@ fcnv provides Go with fast and easy type conversion.
 ## Conversion table
 <table>
 <tr><th>func</th><th>from</th><th>to</th></tr>
-<tr><td>Atoi</td><td rowspan="13">string</td><td>int</td></tr>
+<tr><td>Atoi</td><td rowspan="15">string</td><td>int</td></tr>
 <tr><td>Atoi8</td><td>int8</td></tr>
 <tr><td>Atoi16</td><td>int16</td></tr>
 <tr><td>Atoi32</td><td>int32</td></tr>
@@ -17,19 +17,13 @@ fcnv provides Go with fast and easy type conversion.
 <tr><td>Atoui64</td><td>uint64</td></tr>
 <tr><td>Atof32</td><td>float32</td></tr>
 <tr><td>Atof64</td><td>float64</td></tr>
+<tr><td>Atoc64</td><td>complex64</td></tr>
+<tr><td>Atoc128</td><td>comlex128</td></tr>
 <tr><td>Atob</td><td>[]byte</td></tr>
-<tr><td>Itoa</td><td>int, int8, int16, int32, int64</td><td rowspan="13">string</td></tr>
-<tr><td><s>I8toa</s></td><td><s>int8</s></td></tr>
-<tr><td><s>I16toa</s></td><td><s>int16</s></td></tr>
-<tr><td><s>I32toa</s></td><td><s>int32</s></td></tr>
-<tr><td><s>I64toa</s></td><td><s>int64</s></td></tr>
+<tr><td>Itoa</td><td>int, int8, int16, int32, int64</td><td rowspan="3">string</td></tr>
 <tr><td>Uitoa</td><td>uint, uint8, uint16, uint32, uint64</td></tr>
-<tr><td><s>Uitoa8</s></td><td><s>uint8</s></td></tr>
-<tr><td><s>Uitoa16</s></td><td><s>uint16</s></td></tr>
-<tr><td><s>Uitoa32</s></td><td><s>uint32</s></td></tr>
-<tr><td><s>Uitoa64</s></td><td><s>uint64</s></td></tr>
-<tr><td>Atof32</td><td>float32</td></tr>
-<tr><td>Atof64</td><td>float64</td></tr>
+<tr><td>Ctoa</td><td>complex64, complex128</td></tr>
+<tr><td>Ftoa</td><td>float32, float64</td></tr>
 <tr><td>Btoa</td><td>[]byte</td></tr>
 <tr><td>Byte2Int</td><td>[]byte</td><td>int</td></tr>
 <tr><td>Int2Byte</td><td>int</td><td>[]byte</td></tr>
