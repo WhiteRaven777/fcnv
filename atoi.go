@@ -51,7 +51,7 @@ func atoi8(s string) (ret int8, err error) {
 	}
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoi16 returns the result of ParseInt(s, 10, 16) converted to type int16.
@@ -81,7 +81,7 @@ func atoi16(s string) (ret int16, err error) {
 	}
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoi32 returns the result of ParseInt(s, 10, 32) converted to type int32.
@@ -111,7 +111,7 @@ func atoi32(s string) (ret int32, err error) {
 	}
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoi64 returns the result of ParseInt(s, 10, 64) converted to type int64.
@@ -141,7 +141,7 @@ func atoi64(s string) (ret int64, err error) {
 	}
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoui returns the result of ParseUint(s, 10, 0) converted to type uint.
@@ -158,12 +158,12 @@ func atoui(s string) (ret uint, err error) {
 	if sLen := len(s); 0 < sLen && sLen < limit {
 		s0 := s
 		if sign(s, &s) < 0 {
-			return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+			return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 		}
 		for _, ch := range []byte(s) {
 			ch ^= '0'
 			if ch > 9 {
-				return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+				return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 			}
 			ret = ret*10 + uint(ch)
 		}
@@ -188,7 +188,7 @@ func atoui8(s string) (ret uint8, err error) {
 	)
 	s0 := s
 	if sign(s, &s) < 0 {
-		return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+		return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 	}
 	buf := uint(0)
 	for i := range s {
@@ -207,7 +207,7 @@ func atoui8(s string) (ret uint8, err error) {
 	return uint8(buf), nil
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoui16 returns the result of ParseUint(s, 10, 16) converted to type uint16.
@@ -219,7 +219,7 @@ func atoui16(s string) (ret uint16, err error) {
 	)
 	s0 := s
 	if sign(s, &s) < 0 {
-		return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+		return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 	}
 	buf := uint(0)
 	for i := range s {
@@ -238,7 +238,7 @@ func atoui16(s string) (ret uint16, err error) {
 	return uint16(buf), nil
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoui32 returns the result of ParseUint(s, 10, 32) converted to type uint32.
@@ -250,7 +250,7 @@ func atoui32(s string) (ret uint32, err error) {
 	)
 	s0 := s
 	if sign(s, &s) < 0 {
-		return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+		return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 	}
 	buf := uint64(0)
 	for i := range s {
@@ -269,7 +269,7 @@ func atoui32(s string) (ret uint32, err error) {
 	return uint32(buf), nil
 
 syntaxError:
-	return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+	return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 }
 
 // atoui64 returns the result of ParseUint(s, 10, 64) converted to type uint64.
@@ -283,12 +283,12 @@ func atoui64(s string) (ret uint64, err error) {
 	if sLen := len(s); 0 < sLen && sLen < limit {
 		s0 := s
 		if sign(s, &s) < 0 {
-			return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+			return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 		}
 		for _, ch := range []byte(s) {
 			ch ^= '0'
 			if ch > 9 {
-				return 0, &strconv.NumError{fnName, s0, strconv.ErrSyntax}
+				return 0, &strconv.NumError{Func: fnName, Num: s0, Err: strconv.ErrSyntax}
 			}
 			ret = ret*10 + uint64(ch)
 		}
